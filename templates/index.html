@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family: "Lucida Console", "Courier New", monospace;
+        }
+                /* Three image containers (use 25% for four, and 50% for two, etc) */
+        .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+        margin: 5px
+        }
+
+        /* Clear floats after image containers */
+        .row::after {
+        content: "";
+        clear: both;
+        display: table;
+        ;
+        }
+    </style>
+    <title>Object detection</title>
+</head>
+<body>
+    <h1>YOLO v4 Object Detection</h1>
+    <h2>Upload Images</h2>
+    <form action="/uploader" method="POST" enctype="multipart/form-data">
+        <button type="submit">Submit</button>
+        <input type="file" name="image">
+    </form>
+    {% for msg in get_flashed_messages() %}
+      <h3>{{ msg }}</h3>
+      {% endfor %}
+    
+    {%if display_rendered and detected %}
+        <div class="row">
+            <div class="column">
+                <p>Original image</p>
+                <img src="{{url_for('display_image' ,filename=display_rendered)}}" width="400">
+            </div>
+            <div class="column">
+                <p>Detected image</p>
+                <img src="{{url_for('display_detected_image' ,filename=detected)}}" width="400">
+            </div>
+          </div>
+    {%endif%}
+        
+</body>
+</html>
