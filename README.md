@@ -13,3 +13,4 @@ Currently, an object detection model using yolo is deployed on flask app and a b
 * Run the server:  
   ```python3 server.py```
 
+![Alt Text](sample.png)
